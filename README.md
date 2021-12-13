@@ -4,7 +4,7 @@ This projects helps people using OHM forks like wagmi auto stake their bonds eve
 ### Instructions
 1. Clone the repository
 2. npm install / yarn install
-3. Create an env file and add your private key with this format
+3. Create an .env file and add your private key with this format
 ```env
 PRIVATE_KEY=YOUR_KEY_HERE
 ```
