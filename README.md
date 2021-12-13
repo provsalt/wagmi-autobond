@@ -12,5 +12,6 @@ PRIVATE_KEY=YOUR_KEY_HERE
 5. Leave it on and enjoy
 
 ### Screenshots
-![Demo 1]("./images/demo1.png")
-![Demo 2]("./images/demo2.png")
+![Demo 1](./images/demo1.png)
+
+![Demo 2](./images/demo2.png)
