@@ -6,12 +6,11 @@ const log: Logger = new Logger({
   displayFunctionName: false,
   displayFilePath: "hidden",
 });
-let redeemed = false;
 
 async function main() {
   // Retrieve accounts from the local node
   const accounts = await ethers.provider.listAccounts();
-  console.log(accounts);
+  log.info("You're currently using the following account:" + accounts[0]);
   const StakingDistributorAddress = addresses.StakingDistributor;
   const StakingDistributor = await ethers.getContractFactory(
     "StakingDistributor"
@@ -26,10 +25,7 @@ async function main() {
     // This is abit inefficient however it's 12am and I'm braindead atm
     if (time > epoch - 60) {
       log.info("Rebasing soon, redeeming bonds.");
-      if (!redeemed) {
-        redeem(accounts[0]);
-      }
-      redeemed = true;
+      redeem(accounts[0]);
     } else {
       log.debug(
         "Rebasing in " + ((epoch - time) / 60 / 60).toFixed(1) + " hours."
