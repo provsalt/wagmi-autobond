@@ -1,6 +1,8 @@
 import { ethers } from "hardhat";
 import { Logger } from "tslog";
 const addresses = require("../addresses.json");
+import YAML from 'yaml';
+import fs from 'fs';
 
 const log: Logger = new Logger({
   displayFunctionName: false,
@@ -8,9 +10,12 @@ const log: Logger = new Logger({
 });
 
 async function main() {
+  const cfg = YAML.parse(fs.readFileSync('config.yml', 'utf8'));
   // Retrieve accounts from the local node
   const accounts = await ethers.provider.listAccounts();
-  log.info("You're currently using the following account:" + accounts[0]);
+  log.info("You're currently using the following account: " + accounts[0]);
+  // @ts-ignore
+  cfg.wrapping.enabled && log.warn("Wrapping is enabled, this is an experimental feature.");
   const StakingDistributorAddress = addresses.StakingDistributor;
   const StakingDistributor = await ethers.getContractFactory(
     "StakingDistributor"
