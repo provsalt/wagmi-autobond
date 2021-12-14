@@ -13,6 +13,10 @@ async function main() {
   const cfg = YAML.parse(fs.readFileSync('config.yml', 'utf8'));
   // Retrieve accounts from the local node
   const accounts = await ethers.provider.listAccounts();
+  if (!accounts.length) {
+    log.error("No accounts found. Please add your private key.");
+    process.exit(1);
+  }
   log.info("You're currently using the following account: " + accounts[0]);
   cfg.wrapping.enabled && log.warn("Wrapping is enabled, this is an experimental feature.");
 
