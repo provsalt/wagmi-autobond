@@ -1,4 +1,4 @@
-# Wagmi-autostake
+# Wagmi autobond
 This projects helps people using OHM forks like wagmi auto stake their bonds every few hours just before rebase. I decided to make one for euphoria since I'm pretty active in the harmony network.
 
 ### Instructions
