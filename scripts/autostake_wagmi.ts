@@ -1,6 +1,6 @@
 import { ethers } from "hardhat";
 import { Logger } from "tslog";
-const addresses = require("../addresses.json");
+import addresses from "../addresses.json";
 import YAML from 'yaml';
 import fs from 'fs';
 
