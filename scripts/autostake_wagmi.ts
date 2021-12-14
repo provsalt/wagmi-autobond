@@ -14,8 +14,8 @@ async function main() {
   // Retrieve accounts from the local node
   const accounts = await ethers.provider.listAccounts();
   log.info("You're currently using the following account: " + accounts[0]);
-  // @ts-ignore
   cfg.wrapping.enabled && log.warn("Wrapping is enabled, this is an experimental feature.");
+
   const StakingDistributorAddress = addresses.StakingDistributor;
   const StakingDistributor = await ethers.getContractFactory(
     "StakingDistributor"
@@ -30,7 +30,7 @@ async function main() {
     // This is abit inefficient however it's 12am and I'm braindead atm
     if (time > epoch - 60) {
       log.info("Rebasing soon, redeeming bonds.");
-      redeem(accounts[0]);
+      redeem(accounts[0], cfg);
     } else {
       log.debug(
         "Rebasing in " + ((epoch - time) / 60 / 60).toFixed(1) + " hours."
@@ -39,16 +39,16 @@ async function main() {
   }, 20000);
 }
 
-async function redeem(account: string) {
+async function redeem(account: string, cfg: any) {
   for (let bond in addresses.bonds) {
     log.info("Redeeming bond " + bond);
     const BondAddress = addresses.bonds[bond];
     const BondDepository = await ethers.getContractFactory("BondDepository");
     const bondDepository = await BondDepository.attach(BondAddress);
     const bondBalance = await bondDepository.pendingPayoutFor(account);
-    if (bondBalance > 1) {
+    if (bondBalance > 100) {
       // the boolean argument is whether to auto stake for the user.
-      await bondDepository.redeem(account, true);
+      cfg.wrapping.enabled ? await bondDepository.redeem(account, false) : await bondDepository.redeem(account, true);
       log.info("Redeemed " + bondBalance + " for " + bond);
     }
   }
