@@ -34,12 +34,14 @@ const config: HardhatUserConfig = {
     harmony: {
       url: "https://api.harmony.one",
       chainId: 1666600000,
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     pokt: {
       url: "https://harmony-0-rpc.gateway.pokt.network",
       chainId: 1666600000,
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     ropsten: {
       url: process.env.ROPSTEN_URL || "",

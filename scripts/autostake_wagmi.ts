@@ -68,7 +68,7 @@ async function redeem(account: string, cfg: any) {
     wsWAGMI.wrap(account, totalBalance);
   }
 
-  cfg.wrapping.pool !== "none" && poolTokens()
+  cfg.wrapping.pool !== "none" && poolTokens();
 }
 
 async function poolTokens() {
