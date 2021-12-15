@@ -42,7 +42,7 @@ async function main() {
 
 async function redeem(account: string, cfg: any) {
   let totalBalance = 0;
-  for (let bond in addresses.bonds) {
+  for (const bond in addresses.bonds) {
     log.info("Redeeming bond " + bond);
     const BondAddress = addresses.bonds[bond];
     const BondDepository = await ethers.getContractFactory("BondDepository");
@@ -72,7 +72,7 @@ async function redeem(account: string, cfg: any) {
 }
 
 async function poolTokens() {
-  
+    
 }
 
 main()
