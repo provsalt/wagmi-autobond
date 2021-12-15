@@ -1,8 +1,8 @@
 import { ethers } from "hardhat";
 import { Logger } from "tslog";
 import addresses from "../addresses.json";
-import YAML from 'yaml';
-import fs from 'fs';
+import YAML from "yaml";
+import fs from "fs";
 
 const log: Logger = new Logger({
   displayFunctionName: false,
@@ -14,8 +14,7 @@ async function main() {
   // Retrieve accounts from the local node
   const accounts = await ethers.provider.listAccounts();
   if (!accounts.length) {
-    log.error("No accounts found. Please add your private key.");
-    process.exit(1);
+    throw new Error("No accounts found. Please add your private key.");
   }
   log.info("You're currently using the following account: " + accounts[0]);
   cfg.wrapping.enabled &&

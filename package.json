@@ -25,17 +25,22 @@
     "eslint-plugin-promise": "^5.1.0",
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
+    "hardhat": "^2.8.0",
     "hardhat-gas-reporter": "^1.0.4",
     "prettier": "^2.3.2",
     "prettier-plugin-solidity": "^1.0.0-beta.13",
     "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.16",
     "ts-node": "^10.1.0",
+    "tslog": "^3.3.0",
     "typechain": "^5.1.2",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "yaml": "^1.10.2"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "run": "npx hardhat run ./scripts/autostake_wagmi.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/provsalt/wagmi-autostake.git"
