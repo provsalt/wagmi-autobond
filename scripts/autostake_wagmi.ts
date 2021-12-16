@@ -1,8 +1,8 @@
 import { ethers } from "hardhat";
 import { Logger } from "tslog";
 import addresses from "../addresses.json";
-import YAML from 'yaml';
-import fs from 'fs';
+import YAML from "yaml";
+import fs from "fs";
 
 const log: Logger = new Logger({
   displayFunctionName: false,
@@ -10,26 +10,23 @@ const log: Logger = new Logger({
 });
 
 async function main() {
-  const cfg = YAML.parse(fs.readFileSync('config.yml', 'utf8'));
+  const cfg = YAML.parse(fs.readFileSync("config.yml", "utf8"));
   // Retrieve accounts from the local node
   const accounts = await ethers.provider.listAccounts();
   if (!accounts.length) {
-    log.error("No accounts found. Please add your private key.");
-    process.exit(1);
+    throw new Error("No accounts found. Please add your private key.");
   }
   log.info("You're currently using the following account: " + accounts[0]);
-  cfg.wrapping.enabled && log.warn("Wrapping is enabled, this is an experimental feature.");
+  cfg.wrapping.enabled &&
+    log.warn("Wrapping is enabled, this is an experimental feature.");
 
   const StakingDistributorAddress = addresses.StakingDistributor;
-  const StakingDistributor = await ethers.getContractFactory(
-    "StakingDistributor"
-  );
-  const stakingDistributor = await StakingDistributor.attach(
-    StakingDistributorAddress
-  );
+  const StakingDistributor = (
+    await ethers.getContractFactory("StakingDistributor")
+  ).attach(StakingDistributorAddress);
   // Check every 20 second or RIP CPU
   setInterval(async () => {
-    const epoch = await stakingDistributor.nextEpochTime();
+    const epoch = await StakingDistributor.nextEpochTime();
     const time = new Date().valueOf() / 1000;
     // This is abit inefficient however it's 12am and I'm braindead atm
     if (time > epoch - 60) {
@@ -44,17 +41,34 @@ async function main() {
 }
 
 async function redeem(account: string, cfg: any) {
-  for (let bond in addresses.bonds) {
+  let totalBalance = 0;
+  for (const bond in addresses.bonds) {
     log.info("Redeeming bond " + bond);
     const BondAddress = addresses.bonds[bond];
     const BondDepository = await ethers.getContractFactory("BondDepository");
     const bondDepository = await BondDepository.attach(BondAddress);
     const bondBalance = await bondDepository.pendingPayoutFor(account);
-    if (bondBalance > 100) {
+    // eslint-disable-next-line prettier/prettier
+    const formatted =  bondBalance / 10 ^ 9
+    if (bondBalance > 1000) {
+      totalBalance += bondBalance;
       // the boolean argument is whether to auto stake for the user.
-      cfg.wrapping.enabled ? await bondDepository.redeem(account, false) : await bondDepository.redeem(account, true);
-      log.info("Redeemed " + bondBalance + " for " + bond);
+      await bondDepository.redeem(account, true);
+      // ERC20 uses the uint256 * 10 ** decimals function as there are no floating point numbers in solidity
+      log.info("Redeemed " + formatted + " sWAGMI for " + bond);
     }
+  }
+  !cfg.wrapping.enabled &&
+    // eslint-disable-next-line prettier/prettier
+    log.info("Redeemed " + (totalBalance / 10 ^ 9) + " sWAGMI");
+
+  // If wrapping is enabled, we need to wrap the tokens
+  if (cfg.wrapping.enabled) {
+    const wsWAGMI = (await ethers.getContractFactory("wsWAGMI")).attach(
+      addresses.wsWAGMI
+    );
+    wsWAGMI.approve(addresses.wsWAGMI, totalBalance);
+    wsWAGMI.wrap(account, totalBalance);
   }
 }
 
