@@ -48,16 +48,19 @@ async function redeem(account: string, cfg: any) {
     const BondDepository = await ethers.getContractFactory("BondDepository");
     const bondDepository = await BondDepository.attach(BondAddress);
     const bondBalance = await bondDepository.pendingPayoutFor(account);
+    // eslint-disable-next-line prettier/prettier
+    const formatted =  bondBalance / 10 ^ 9
     if (bondBalance > 1000) {
       totalBalance += bondBalance;
       // the boolean argument is whether to auto stake for the user.
       await bondDepository.redeem(account, true);
       // ERC20 uses the uint256 * 10 ** decimals function as there are no floating point numbers in solidity
-      log.info("Redeemed " + bondBalance / (10 ^ 9) + " sWAGMI for " + bond);
+      log.info("Redeemed " + formatted + " sWAGMI for " + bond);
     }
   }
   !cfg.wrapping.enabled &&
-    log.info("Redeemed " + totalBalance / (10 ^ 9) + " sWAGMI");
+    // eslint-disable-next-line prettier/prettier
+    log.info("Redeemed " + (totalBalance / 10 ^ 9) + " sWAGMI");
 
   // If wrapping is enabled, we need to wrap the tokens
   if (cfg.wrapping.enabled) {
@@ -67,12 +70,6 @@ async function redeem(account: string, cfg: any) {
     wsWAGMI.approve(addresses.wsWAGMI, totalBalance);
     wsWAGMI.wrap(account, totalBalance);
   }
-
-  cfg.wrapping.pool !== "none" && poolTokens();
-}
-
-async function poolTokens() {
-    
 }
 
 main()
