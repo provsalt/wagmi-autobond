@@ -1,9 +1,3 @@
 # Wrapping is the process where your swagmi get's wrapped bwfore rebase instead of leaving it as sWAGMI
 wrapping:
   enabled: false
-  # EXPERIMENTAL: Pool your wrapped staked wagmi into viperswap.org liquidity pool
-  # OPTIONS: none, viper, one
-  pool: "none"
-  # Amount of viper/one to add to the liquidity pool.
-  # OPTIONS: number, MAX
-  amount: "MAX"
