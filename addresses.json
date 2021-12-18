@@ -1,0 +1,15 @@
+{
+    "BondDepository": "0xa2473b5b85a9ebec65679d279979222f28cd9467",
+    "StakingDistributor": "0x159e0d93d387e18329a4dacd39dbecc587f78589",
+    "wsWAGMI": "0xBb948620Fa9cD554eF9A331B13eDeA9B181F9D45",
+    "bonds": {
+        "dai": "0xa2473b5b85a9ebec65679d279979222f28cd9467",
+        "dai-wagmi": "0xecdb54197b7a7f62a8fa3a04850347c4c99ab7e1",
+        "ust": "0xf43911c859532e38c969ee1b59eeca3de5630fe3",
+        "ust-wagmi": "0x17adf3fc3319afc79bf7d7dd49c34e59a30d410f",
+        "usdc": "0x202c598E93F69dbe3a5e5706DfB85bdc598bb16F",
+        "busd": "0x5fa3eC803Ed6EeE64A52C101F4FA96dd1B093ac7",
+        "one-wagmi": "0x88eD43604976a65F88EE5be38FC743F7b955AB1e",
+        "wone": "0x1153b233076ee226a1b43f56a9ed55293a6833ee"
+    }
+}
