@@ -48,8 +48,7 @@ async function redeem(account: string, cfg: any) {
     const BondDepository = await ethers.getContractFactory("BondDepository");
     const bondDepository = await BondDepository.attach(BondAddress);
     const bondBalance = await bondDepository.pendingPayoutFor(account);
-    // eslint-disable-next-line prettier/prettier
-    const formatted =  bondBalance / 10 ^ 9
+    const formatted = (bondBalance / 10) ** 9;
     if (bondBalance > 1000) {
       totalBalance += bondBalance;
       // the boolean argument is whether to auto stake for the user.
@@ -59,8 +58,7 @@ async function redeem(account: string, cfg: any) {
     }
   }
   !cfg.wrapping.enabled &&
-    // eslint-disable-next-line prettier/prettier
-    log.info("Redeemed " + (totalBalance / 10 ^ 9) + " sWAGMI");
+    log.info("Redeemed " + (totalBalance / 10) ** 9 + " sWAGMI");
 
   // If wrapping is enabled, we need to wrap the tokens
   if (cfg.wrapping.enabled) {
