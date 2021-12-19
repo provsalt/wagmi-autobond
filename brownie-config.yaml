@@ -1,3 +1,5 @@
+# DO NOT TOUCH THE NETWORKS UNLESS YOU KNOW WHAT YOU'RE DOING! THEY'RE SMART CONTRACT ADDRESSES!!
+# WRONG ADDRESSES MAY RESULT IN SENDING TRANSACTION TO THE WRONG CONTRACT.
 networks:
   Shard0:
     StakingDistributor: "0x159e0d93d387e18329a4dacd39dbecc587f78589"
@@ -21,7 +23,12 @@ networks:
       busd: "0x5fa3eC803Ed6EeE64A52C101F4FA96dd1B093ac7"
       one-wagmi: "0x88eD43604976a65F88EE5be38FC743F7b955AB1e"
       wone: "0x1153b233076ee226a1b43f56a9ed55293a6833ee"
+# This imports your enviromental variable from the file
 dotenv: ".env"
 
+# minimum wagmi before claiming
+minimum_wagmi: 0.000010000
+
+# Don't edit this. It get's your private key variable from your config.
 wallets:
   from_key: ${PRIVATE_KEY}
