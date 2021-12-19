@@ -21,7 +21,7 @@ def main():
 def autobond():
     wagmi = Contract.from_abi("Distributor", config["networks"][network.show_active()]["StakingDistributor"], Distributor.abi)
     while True:
-        if int(time.time() + 120) >= wagmi.nextEpochTime():
+        if int(time.time() + 60) >= wagmi.nextEpochTime():
             redeem()
         else:
             logger.debug("Rebasing in " + str(round((wagmi.nextEpochTime() - int(time.time())) / 3600, 1)) + " hour")
