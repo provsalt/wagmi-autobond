@@ -27,5 +27,9 @@ PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
 brownie run scripts/auto_stake_bonds.py --network Shard0/POKT
 ```
 
+### Screenshits
+![Screenshot](./images/screenshot1.png)
+
+![Screenshot](./images/screenshot2.png)
 ### Donations
 Would be nice to get a little donation to my address if you enjoy my program, one10n5yjj2jjq2a2k3knwsaev0qnxcm8mscfupy2m since I don't charge a dime to use this program
