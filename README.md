@@ -3,7 +3,7 @@ Automatically stake all your wagmi bonds just before rebase
 
 ### Instructions
 
-1. Download [brownie](https://github.com/eth-brownie/brownie)
+1. Download [brownie](https://github.com/eth-brownie/brownie), Use pip instead of pipx
 
 2. Add harmony shard 0 network
 ```bash
