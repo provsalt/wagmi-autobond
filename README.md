@@ -1,6 +1,13 @@
 ## Wagmi Autobond
 Automatically stake all your wagmi bonds just before rebase
 
+This program is compatible with most of other rebase tokens. However it will require you to change the contract addresses in brownie-config,yaml.
+Here is a list of compatible rebase tokens that I've checked.
+
+Wonderland, Snowbank, OneDao
+
+PSA; Please set the minimum amount on high gas networks as it'll cost you quite alot of fee's if you don't
+
 ### Instructions
 
 1. Download [brownie](https://github.com/eth-brownie/brownie), Use pip instead of pipx
