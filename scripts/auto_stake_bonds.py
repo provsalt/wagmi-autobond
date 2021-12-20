@@ -2,6 +2,7 @@ import sys, traceback
 import time
 from brownie import network, config, Contract, Distributor
 from loguru import logger
+from requests import ConnectionError
 from scripts.redeem import redeem
 from scripts.utils import get_account
 
@@ -14,6 +15,8 @@ def main():
         autobond()
     except KeyboardInterrupt:
         logger.warning("Exiting...")
+    except ConnectionError:
+        logger.error("Unable to get blockchain data due to a connection error")
     except Exception:
         traceback.print_exc(file=sys.stdout)
     sys.exit(0)
