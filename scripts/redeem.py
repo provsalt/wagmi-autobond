@@ -10,4 +10,5 @@ def redeem():
             continue
         formatted = f"{balance / 10 ** 9:.9f}"
         logger.info(f"Redeeming {formatted} WAGMI from {bond}")
-        interface.IBond(address).redeem(get_account(), True, {"from": get_account()})
+        tx = interface.IBond(address).redeem(get_account(), True, {"from": get_account()})
+        tx.wait(1)
