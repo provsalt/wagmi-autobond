@@ -25,18 +25,22 @@ brownie networks add Harmony POKT host=https://harmony-0-rpc.gateway.pokt.networ
 
 3. Run pip install -r requirements.txt
 
-4. Make an .env file with your private key formatted like this
-```env
-PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
-```
 5. Run the script
 ```bash
-brownie run scripts/auto_stake_bonds.py --network Shard0/POKT
+brownie run scripts/auto_stake_bonds.py --network Shard0
 ```
+OR POKT
+```bash
+brownie run scripts/auto_stake_bonds.py --network POKT
+```
+
+6. Enter your private key and a password to encrypt it
+The seed phrase will be visible however the password won't be but I'll perhaps add that to the private key
+You can search where you could get your private key for your wallet. I'll reccomend using a new wallet if you don't trust me. After all, we're all satoshi.
 
 ### Screenshits
 ![Screenshot](./images/screenshot1.png)
 
 ![Screenshot](./images/screenshot2.png)
 ### Donations
-Would be nice to get a little donation to my address if you enjoy my program, one10n5yjj2jjq2a2k3knwsaev0qnxcm8mscfupy2m since I don't charge a dime to use this program
+Would be nice to get a little donation to my address if you enjoy my program, ``one10n5yjj2jjq2a2k3knwsaev0qnxcm8mscfupy2m``since I don't charge a dime to use this program
