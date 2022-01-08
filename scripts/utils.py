@@ -1,5 +1,4 @@
 from brownie import accounts, network, config
-from rncryptor import RNCryptor
 
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = [
     "development",

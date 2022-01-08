@@ -1,7 +1,7 @@
 import os
 import sys, traceback
 import time
-from brownie import network, config, Contract, Distributor, accounts
+from brownie import network, config, Contract, Distributor
 from loguru import logger
 from requests import ConnectionError
 import rncryptor
