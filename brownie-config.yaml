@@ -28,7 +28,3 @@ dotenv: ".env"
 
 # minimum wagmi before claiming
 minimum_wagmi: 0.000010000
-
-# Don't edit this. It get's your private key variable from your config.
-wallets:
-  from_key: ${PRIVATE_KEY}

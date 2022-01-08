@@ -1,16 +1,33 @@
+import os
 import sys, traceback
 import time
-from brownie import network, config, Contract, Distributor
+from brownie import network, config, Contract, Distributor, accounts
 from loguru import logger
 from requests import ConnectionError
+import rncryptor
+from getpass import getpass
 from scripts.redeem import redeem
-from scripts.utils import get_account
+from scripts.utils import get_account, set_key
 
 logger.remove()
 logger.add(sys.stdout, colorize=True, format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> <blue>{level}</blue> <level>{message}</level>")
+cryptor = rncryptor.RNCryptor()
 
 def main():
     try:
+        if os.path.isfile(".secrets") == False:
+            key = input("Enter your private key: ")
+            passwd = getpass("Enter a password to securely store your private key: ")
+            hash = cryptor.encrypt(key, passwd)
+            with open(".secrets", "wb") as f:
+                f.write(hash)
+        else: 
+            password_prompt = getpass("Please enter your password to continue: ")
+            with open(".secrets", "rb") as f:
+                hash = f.read()
+                key = cryptor.decrypt(hash, password_prompt)
+                # kinda bad practice to set this in memory tbh but what are the chances of a memory dump happening?
+                set_key(key)
         logger.info("Currently using account: " + get_account().address)
         autobond()
     except KeyboardInterrupt:
