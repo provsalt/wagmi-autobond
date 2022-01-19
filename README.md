@@ -42,9 +42,10 @@ The seed phrase will be visible however the password won't be but I'll perhaps a
 
 You can search where you could get your private key for your wallet. I'll reccomend using a new wallet if you don't trust me. After all, we're all satoshi.
 
+### Donations
+Would be nice to get a little donation to my address if you enjoy my program, ``one10n5yjj2jjq2a2k3knwsaev0qnxcm8mscfupy2m``since I don't charge a dime to use this program
+
 ### Screenshits
 ![Screenshot](./images/screenshot1.png)
 
 ![Screenshot](./images/screenshot2.png)
-### Donations
-Would be nice to get a little donation to my address if you enjoy my program, ``one10n5yjj2jjq2a2k3knwsaev0qnxcm8mscfupy2m``since I don't charge a dime to use this program
