@@ -45,7 +45,7 @@ You can search where you could get your private key for your wallet. I'll reccom
 ### Donations
 Would be nice to get a little donation to my address if you enjoy my program, ``one10n5yjj2jjq2a2k3knwsaev0qnxcm8mscfupy2m``since I don't charge a dime to use this program
 
-### Screenshits
+### Screenshots
 ![Screenshot](./images/screenshot1.png)
 
 ![Screenshot](./images/screenshot2.png)
