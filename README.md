@@ -1,3 +1,5 @@
+# Deprecation notice
+This repository is no longer maintained and code is archived.
 ## Wagmi Autobond
 Automatically stake all your wagmi bonds just before rebase
 
